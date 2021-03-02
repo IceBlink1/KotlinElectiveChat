@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kotlinelective.databinding.ChatFragmentBinding
-import kotlinx.android.synthetic.main.chat_fragment.*
 
 class ChatFragment : Fragment() {
 
@@ -40,16 +39,16 @@ class ChatFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(ChatViewModel::class.java)
         viewModel.liveData.observe(viewLifecycleOwner, {
             adapter = ChatRecyclerAdapter(it)
-            recyclerView.layoutManager =
+            binding.recyclerView.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            recyclerView.adapter = adapter
+            binding.recyclerView.adapter = adapter
         })
         binding.sendButton.setOnClickListener {
-            if (chatInputEditText.text.toString().isEmpty()) {
+            if (binding.chatInputEditText.text.toString().isEmpty()) {
                 return@setOnClickListener
             }
-            viewModel.send(chatInputEditText.text.toString())
-            chatInputEditText.text?.clear()
+            viewModel.send(binding.chatInputEditText.text.toString())
+            binding.chatInputEditText.text?.clear()
         }
     }
 

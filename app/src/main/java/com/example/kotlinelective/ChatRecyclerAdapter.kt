@@ -2,14 +2,11 @@ package com.example.kotlinelective
 
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinelective.databinding.ChatItemBinding
-import kotlinx.android.synthetic.main.chat_item.view.*
 
-class ChatRecyclerAdapter(val list: List<Content>) :
+class ChatRecyclerAdapter(private val list: List<Content>) :
     RecyclerView.Adapter<ChatRecyclerAdapter.ChatViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
