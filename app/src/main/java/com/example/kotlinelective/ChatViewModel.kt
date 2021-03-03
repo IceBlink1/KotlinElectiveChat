@@ -27,20 +27,15 @@ class ChatViewModel : ViewModel() {
     }
 
     init {
-        viewModelScope.launch(Dispatchers.Default) {
-            val request = Request.Builder().url(WEB_SOCKET_URL).build()
-            webSocket = client.newWebSocket(
-                request,
-                ChatWebSocketListener()
-            )
-
-        }
+        val request = Request.Builder().url(WEB_SOCKET_URL).build()
+        webSocket = client.newWebSocket(
+            request,
+            ChatWebSocketListener()
+        )
     }
 
     fun send(text: String) {
-        viewModelScope.launch(Dispatchers.Default) {
-            webSocket.send(text)
-        }
+        webSocket.send(text)
     }
 
     inner class ChatWebSocketListener : WebSocketListener() {
